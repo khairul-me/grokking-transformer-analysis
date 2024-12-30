@@ -175,6 +175,3 @@ This is a research framework designed to be extended. Key areas for contribution
 1. Power, A., Abnar, S., & Sutskever, I. (2022). "Grokking: Generalization Beyond Memorization in Neural Networks."
 2. Liu, D., & Ritter, S. (2023). "Omnigrok: Grokking Beyond Algorithmic Data."
 3. Stander, D., Yu, Q., Fan, H., & Biderman, S. (2023). "Grokking Group Multiplication with Cosets."
-
-## License
-[Add appropriate license information]
