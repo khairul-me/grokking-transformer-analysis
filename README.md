@@ -37,6 +37,7 @@ pandas
 ├── grokking_research.py
 └── README.md
 ```
+![image](https://github.com/user-attachments/assets/98f90248-d47b-4ab1-bb25-54e2e0c203bc)
 
 ## Core Components
 
