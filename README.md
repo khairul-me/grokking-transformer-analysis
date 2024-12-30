@@ -1,168 +1,180 @@
-# Grokking Transformer Analysis
+# Grokking Research Framework
 
-A comprehensive framework for investigating and visualizing the grokking phenomenon in transformer models.
+## Overview
+This project implements a comprehensive framework for studying the "grokking" phenomenon in neural networks, with a particular focus on modular arithmetic tasks. Grokking refers to the phenomenon where neural networks suddenly achieve good generalization after a long period of apparent overfitting.
 
-## Architecture
-```mermaid
-graph TD
-    A[Data Generation] --> B[Transformer Model]
-    B --> C[Training Loop]
-    C --> D[Mechanistic Analysis]
-    D --> E[Visualization Suite]
-    
-    C -->|Early Detection| F[Grokking Detection]
-    C -->|Checkpoints| G[Model Snapshots]
-    
-    D -->|Patterns| H[Attention Analysis]
-    D -->|Statistics| I[Activation Stats]
-    D -->|Gradients| J[Gradient Flow]
-    
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style B fill:#bbf,stroke:#333,stroke-width:2px
-    style C fill:#bfb,stroke:#333,stroke-width:2px
+## Key Features
+- Modular arithmetic task implementation ((a+b) mod p)
+- Transformer-based architecture using HookedTransformer
+- Dynamic weight decay optimization
+- Comprehensive mechanistic analysis tools
+- Curriculum learning support
+- Early grokking detection
+- Advanced visualization capabilities
 
-
-Project Flow
-mermaidCopysequenceDiagram
-    participant D as Data
-    participant M as Model
-    participant T as Training
-    participant A as Analysis
-    
-    D->>M: Generate Modular Arithmetic Data
-    M->>T: Initialize Training
-    loop Training Process
-        T->>T: Execute Epoch
-        T->>A: Track Metrics
-        A->>T: Early Grokking Check
-    end
-    T->>A: Generate Visualizations
-Overview
-This project provides a comprehensive framework for studying the grokking phenomenon in transformer models through modular arithmetic tasks. It implements sophisticated training and analysis tools to detect and visualize sudden improvements in model generalization.
-Features
-Core Components
-
-🔄 Enhanced Training Framework
-
-Curriculum learning
-Adaptive optimization
-Early grokking detection
-Automated checkpointing
-
-
-🔍 Mechanistic Analysis
-
-Attention pattern tracking
-Activation statistics
-Gradient flow analysis
-Weight evolution monitoring
-
-
-📊 Visualization Suite
-
-Real-time metrics
-Attention heatmaps
-Learning dynamics
-Performance analytics
-
-
-
-Requirements
-pythonCopytorch>=1.9.0
-transformer_lens
-numpy
-pandas
-matplotlib
-seaborn
+## Requirements
+```
+torch
 einops
 tqdm
-Installation
+matplotlib
+numpy
+seaborn
+transformer_lens
+pandas
+```
 
-Clone the repository:
+## Project Structure
+```
+.
+├── experiments/
+│   └── grokking_{timestamp}/
+│       ├── weights/
+│       ├── heatmaps/
+│       ├── metrics/
+│       ├── checkpoints/
+│       └── analysis/
+├── grokking_research.py
+└── README.md
+```
 
-bashCopygit clone https://github.com/khairul-me/grokking-transformer-analysis.git
-cd grokking-transformer-analysis
+## Core Components
 
-Install dependencies:
+### 1. Base Experiment Class (`BaseGrokkingExperiment`)
+- Handles basic experiment setup and configuration
+- Manages data generation and model initialization
+- Implements core training loops and evaluation
 
-bashCopypip install -r requirements.txt
-Quick Start
-pythonCopyfrom grokking_research import EnhancedGrokkingExperiment
+### 2. Mechanistic Analysis (`MechanisticAnalysis`)
+Provides tools for analyzing:
+- Attention patterns
+- Weight evolution
+- Activation statistics
+- Gradient flow
+- Feature attribution
 
-# Default configuration
-experiment = EnhancedGrokkingExperiment()
-experiment.run_enhanced_training()
+### 3. Optimization Components (`GrokkingOptimizer`)
+Features:
+- Dynamic weight decay scheduling
+- Curriculum learning implementation
+- Early grokking detection
+- Batch size scheduling
+- Learning rate adaptation
 
-# Custom configuration
-config = {
+### 4. Enhanced Experiment Class (`EnhancedGrokkingExperiment`)
+Combines all components for comprehensive experiments with:
+- Advanced training loops
+- Integrated analysis
+- Visualization generation
+- Metric tracking
+- Checkpoint management
+
+## Usage
+
+### Basic Example
+```python
+# Configure the experiment
+base_config = {
     'num_epochs': 25000,
     'batch_size': 2048,
     'lr': 1e-3,
-    'wd': 1.0
+    'device': 'cuda' if torch.cuda.is_available() else 'cpu'
 }
-experiment = EnhancedGrokkingExperiment(config)
-Project Structure
-Copygrokking-transformer-analysis/
-├── grokking_research.py      # Main implementation
-├── experiments/             # Experiment outputs
-│   └── grokking_{timestamp}/
-│       ├── checkpoints/    # Model checkpoints
-│       ├── analysis/       # Analysis outputs
-│       ├── metrics/        # Training metrics
-│       └── config.json     # Experiment config
-├── requirements.txt        # Project dependencies
-└── README.md              # Project documentation
-Implementation Details
-Training Process
-mermaidCopygraph LR
-    A[Data] --> B[Model]
-    B --> C[Train]
-    C --> D[Evaluate]
-    D -->|Early Grokking| C
-    D -->|Complete| E[Analysis]
-Analysis Components
-The project includes comprehensive analysis tools:
 
-Attention pattern visualization
-Training dynamics plots
-Gradient flow analysis
-Activation statistics
+# Create optimization strategy
+strategy = OptimizationStrategy(
+    name="adaptive_curriculum",
+    learning_rate_schedule="adaptive",
+    weight_decay_schedule="increasing",
+    batch_size_schedule="curriculum",
+    early_grok_detection=True,
+    curriculum_learning=True
+)
 
-Results
-The experiment generates various visualizations:
+# Initialize and run experiment
+experiment = EnhancedGrokkingExperiment(base_config)
+experiment.generate_data()
+experiment.create_model()
+experiment.setup_training()
+experiment.run_enhanced_training(strategy)
+```
 
-Training/test loss curves
-Accuracy progression
-Attention pattern heatmaps
-Gradient norm evolution
+### Custom Task Configuration
+```python
+task_config = TaskConfig(
+    task_type=TaskType.MODULAR_ARITHMETIC,
+    input_size=113,
+    output_size=113,
+    sequence_length=3
+)
 
-Example output:
-CopyTraining: 100%|██████████| 25000/25000 [12:14<00:00, 4.95it/s]
-Early grokking detected at epoch 19996 with score 11367.7024
-Training complete! Generating final analysis...
-Contributing
-Contributions are welcome! Please feel free to submit a Pull Request.
-License
-This project is licensed under the MIT License - see the LICENSE file for details.
-Citation
-If you use this code in your research, please cite:
-bibtexCopy@software{grokking_transformer_analysis,
-  title = {Grokking Transformer Analysis},
-  author = {Islam, Khairul},
-  year = {2024},
-  url = {https://github.com/khairul-me/grokking-transformer-analysis}
-}
-Contact
+experiment = EnhancedGrokkingExperiment(base_config, task_config)
+```
 
-Khairul Islam
-Email: khairul.islam@hws.edu
-GitHub: @khairul-me
+## Configuration Options
 
-Copy
-This README includes:
-1. Mermaid diagrams for visual explanation
-2. Clear structure and organization
-3. Your contact information
-4. Code examples and installation instructions
-5. Comprehensive project overview
-You can directly copy this into a README.md file, and GitHub will render the mermaid diagrams automatically. Would you like me to explain any section in more detail or make any adjustments?
+### Task Types
+- `MODULAR_ARITHMETIC`
+- `MATRIX_MULTIPLICATION`
+- `SEQUENCE_PREDICTION`
+- `SYMBOLIC_REASONING`
+
+### Optimization Strategies
+1. Learning Rate Schedules:
+   - `constant`
+   - `cyclic`
+   - `adaptive`
+
+2. Weight Decay Schedules:
+   - `constant`
+   - `increasing`
+   - `adaptive`
+
+3. Batch Size Schedules:
+   - `constant`
+   - `increasing`
+   - `curriculum`
+
+## Analysis Tools
+
+### 1. Training Dynamics
+```python
+experiment.create_training_visualizations(save_dir)
+```
+Generates plots for:
+- Training/test loss trajectories
+- Accuracy progression
+- Learning rate changes
+- Weight decay adaptation
+
+### 2. Mechanistic Analysis
+```python
+experiment.mechanistic_analyzer.create_visualizations(save_dir)
+```
+Provides visualizations of:
+- Attention patterns
+- Weight evolution
+- Activation statistics
+- Gradient flow
+
+## Experimental Results
+Results are automatically saved in the `experiments/grokking_{timestamp}/` directory:
+- Training metrics (JSON)
+- Visualizations (PNG)
+- Model checkpoints (PT)
+- Analysis reports
+
+## Contributing
+This is a research framework designed to be extended. Key areas for contribution:
+1. New task types
+2. Additional optimization strategies
+3. Enhanced analysis tools
+4. Improved visualization methods
+
+## References
+1. Power, A., Abnar, S., & Sutskever, I. (2022). "Grokking: Generalization Beyond Memorization in Neural Networks."
+2. Liu, D., & Ritter, S. (2023). "Omnigrok: Grokking Beyond Algorithmic Data."
+3. Stander, D., Yu, Q., Fan, H., & Biderman, S. (2023). "Grokking Group Multiplication with Cosets."
+
+## License
+[Add appropriate license information]
