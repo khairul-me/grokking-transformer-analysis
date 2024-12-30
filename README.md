@@ -99,6 +99,7 @@ experiment.create_model()
 experiment.setup_training()
 experiment.run_enhanced_training(strategy)
 ```
+![image](https://github.com/user-attachments/assets/b93b1a23-d134-438f-a4d6-41ef3609df79)
 
 ### Custom Task Configuration
 ```python
