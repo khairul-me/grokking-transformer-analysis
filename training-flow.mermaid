@@ -1,0 +1,23 @@
+sequenceDiagram
+    participant Data as Data Generation
+    participant Model as Model Setup
+    participant Train as Training Loop
+    participant Analysis as Analysis Tools
+    participant Viz as Visualization
+
+    Data->>Model: Generate modular arithmetic data
+    Model->>Train: Initialize transformer model
+    
+    rect rgb(200, 220, 250)
+        Note over Train: Training Phase
+        loop Each Epoch
+            Train->>Train: Forward pass
+            Train->>Train: Compute loss
+            Train->>Train: Backward pass
+            Train->>Analysis: Track metrics
+            Analysis->>Analysis: Update analysis
+        end
+    end
+
+    Analysis->>Viz: Generate visualizations
+    Viz->>Viz: Save results
